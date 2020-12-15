@@ -11,6 +11,7 @@
 		7939566F256AAD88000052C3 /* binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939566E256AAD88000052C3 /* binary_tree.swift */; };
 		79395671256AADD7000052C3 /* balanced_binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79395670256AADD7000052C3 /* balanced_binary_tree.swift */; };
 		79395673256AAE04000052C3 /* search_binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79395672256AAE04000052C3 /* search_binary_tree.swift */; };
+		79BA08152588D25E00CAEA49 /* sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA08142588D25E00CAEA49 /* sort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		7939566E256AAD88000052C3 /* binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = binary_tree.swift; sourceTree = "<group>"; };
 		79395670256AADD7000052C3 /* balanced_binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = balanced_binary_tree.swift; sourceTree = "<group>"; };
 		79395672256AAE04000052C3 /* search_binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search_binary_tree.swift; sourceTree = "<group>"; };
+		79BA08142588D25E00CAEA49 /* sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				79395666256AAD57000052C3 /* main.swift */,
+				79BA08132588D24900CAEA49 /* 排序 */,
 				7939566D256AAD6A000052C3 /* 二叉树 */,
 			);
 			path = Leetcode;
@@ -77,6 +80,14 @@
 				79395672256AAE04000052C3 /* search_binary_tree.swift */,
 			);
 			path = "二叉树";
+			sourceTree = "<group>";
+		};
+		79BA08132588D24900CAEA49 /* 排序 */ = {
+			isa = PBXGroup;
+			children = (
+				79BA08142588D25E00CAEA49 /* sort.swift */,
+			);
+			path = "排序";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79BA08152588D25E00CAEA49 /* sort.swift in Sources */,
 				79395673256AAE04000052C3 /* search_binary_tree.swift in Sources */,
 				7939566F256AAD88000052C3 /* binary_tree.swift in Sources */,
 				79395671256AADD7000052C3 /* balanced_binary_tree.swift in Sources */,

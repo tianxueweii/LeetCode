@@ -45,6 +45,7 @@ func heapSort(_ nums: [Int]) -> [Int] {
     return arr
 }
 
+// [50, 45, 30, 25, 10]
 func heapAdjust(_ arr: inout [Int], _ root: Int, _ length: Int) {
     // 指向左节点
     var node = 2 * root + 1
@@ -62,6 +63,20 @@ func heapAdjust(_ arr: inout [Int], _ root: Int, _ length: Int) {
     }
 }
 
+func minHeapAdjust(_ arr: inout [Int], _ root: Int, _ length: Int) {
+    var node = 2 * root + 1
+    guard node < length else {
+        return
+    }
+    // 判断右节点是否小于左节点
+    if node + 1 < length  && arr[node] > arr[node + 1] {
+        node += 1
+    }
+    if arr[node] < arr[root] {
+        arr.swapAt(root, node)
+        minHeapAdjust(&arr, node, length)
+    }
+}
 
 
 

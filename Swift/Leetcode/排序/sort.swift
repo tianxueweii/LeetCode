@@ -8,7 +8,7 @@
 
 import Foundation
 
-///  快排
+// MARK:- 快排
 func quickSort(_ arr: [Int]) -> [Int] {
     guard arr.count > 1 else {
         return arr
@@ -27,7 +27,7 @@ func quickSort(_ arr: [Int]) -> [Int] {
     return quickSort(leftArr) + [ele] + quickSort(rightArr)
 }
 
-/// 堆排序
+// MARK:- 堆排序
 func heapSort(_ nums: [Int]) -> [Int] {
     guard nums.count > 1 else {
         return nums

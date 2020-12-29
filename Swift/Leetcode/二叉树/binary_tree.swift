@@ -10,7 +10,7 @@
 
 import Foundation
 
-private class TreeNode {
+class TreeNode {
     public var val: Int
     public var left: TreeNode?
     public var right: TreeNode?
@@ -27,7 +27,7 @@ extension TreeNode: Equatable {
     }
 }
 
-private class Solution {
+class Solution_binary_tree {
     
     // MARK:- 前序遍历  根 -> 左 -> 右
     func preorderTraveral(_ treeNode: TreeNode?) {

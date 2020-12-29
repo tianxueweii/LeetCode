@@ -10,26 +10,9 @@
 
 import Foundation
 
-private class TreeNode {
-    public var val: Int
-    public var left: TreeNode?
-    public var right: TreeNode?
-    public init(_ val: Int) {
-        self.val = val
-        self.left = nil
-        self.right = nil
-    }
-}
-
-extension TreeNode: Equatable {
-    public static func == (lhs: TreeNode, rhs: TreeNode) -> Bool {
-        return lhs.left == rhs.left && lhs.right == rhs.right && lhs.val == rhs.val
-    }
-}
-
 // 二叉搜索树，中序遍历为递增序列
 
-private class solution {
+class Solution_search_binary_tree {
 
     // MARK:- 二叉搜索树转双链表
     var head: TreeNode?

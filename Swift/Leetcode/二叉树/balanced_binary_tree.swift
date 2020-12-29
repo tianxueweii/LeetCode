@@ -10,18 +10,7 @@
 
 import Foundation
 
-private class TreeNode {
-    public var val: Int
-    public var left: TreeNode?
-    public var right: TreeNode?
-    public init(_ val: Int) {
-        self.val = val
-        self.left = nil
-        self.right = nil
-    }
-}
-
-private class Solution {
+class Solution_balanced_binary_tree {
     
     // MARK:- 二叉树深度问题
     func maxDepth(_ root: TreeNode?) -> Int {

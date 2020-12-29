@@ -11,6 +11,9 @@
 		7939566F256AAD88000052C3 /* binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939566E256AAD88000052C3 /* binary_tree.swift */; };
 		79395671256AADD7000052C3 /* balanced_binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79395670256AADD7000052C3 /* balanced_binary_tree.swift */; };
 		79395673256AAE04000052C3 /* search_binary_tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79395672256AAE04000052C3 /* search_binary_tree.swift */; };
+		79536FD52599B5D20098C231 /* back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79536FD42599B5D20098C231 /* back.swift */; };
+		79536FDA259ADF1B0098C231 /* trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79536FD9259ADF1B0098C231 /* trie.swift */; };
+		79536FE1259B22C40098C231 /* search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79536FE0259B22C40098C231 /* search.swift */; };
 		79BA08152588D25E00CAEA49 /* sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA08142588D25E00CAEA49 /* sort.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		7939566E256AAD88000052C3 /* binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = binary_tree.swift; sourceTree = "<group>"; };
 		79395670256AADD7000052C3 /* balanced_binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = balanced_binary_tree.swift; sourceTree = "<group>"; };
 		79395672256AAE04000052C3 /* search_binary_tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search_binary_tree.swift; sourceTree = "<group>"; };
+		79536FD42599B5D20098C231 /* back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = back.swift; sourceTree = "<group>"; };
+		79536FD9259ADF1B0098C231 /* trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trie.swift; sourceTree = "<group>"; };
+		79536FE0259B22C40098C231 /* search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = search.swift; sourceTree = "<group>"; };
 		79BA08142588D25E00CAEA49 /* sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +72,9 @@
 			isa = PBXGroup;
 			children = (
 				79395666256AAD57000052C3 /* main.swift */,
+				79536FDE259B22B70098C231 /* 查找 */,
+				79536FD8259ADF100098C231 /* 字典树 */,
+				79536FD32599B5BA0098C231 /* 回溯算法 */,
 				79BA08132588D24900CAEA49 /* 排序 */,
 				7939566D256AAD6A000052C3 /* 二叉树 */,
 			);
@@ -80,6 +89,30 @@
 				79395672256AAE04000052C3 /* search_binary_tree.swift */,
 			);
 			path = "二叉树";
+			sourceTree = "<group>";
+		};
+		79536FD32599B5BA0098C231 /* 回溯算法 */ = {
+			isa = PBXGroup;
+			children = (
+				79536FD42599B5D20098C231 /* back.swift */,
+			);
+			path = "回溯算法";
+			sourceTree = "<group>";
+		};
+		79536FD8259ADF100098C231 /* 字典树 */ = {
+			isa = PBXGroup;
+			children = (
+				79536FD9259ADF1B0098C231 /* trie.swift */,
+			);
+			path = "字典树";
+			sourceTree = "<group>";
+		};
+		79536FDE259B22B70098C231 /* 查找 */ = {
+			isa = PBXGroup;
+			children = (
+				79536FE0259B22C40098C231 /* search.swift */,
+			);
+			path = "查找";
 			sourceTree = "<group>";
 		};
 		79BA08132588D24900CAEA49 /* 排序 */ = {
@@ -148,9 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79536FD52599B5D20098C231 /* back.swift in Sources */,
 				79BA08152588D25E00CAEA49 /* sort.swift in Sources */,
 				79395673256AAE04000052C3 /* search_binary_tree.swift in Sources */,
+				79536FDA259ADF1B0098C231 /* trie.swift in Sources */,
 				7939566F256AAD88000052C3 /* binary_tree.swift in Sources */,
+				79536FE1259B22C40098C231 /* search.swift in Sources */,
 				79395671256AADD7000052C3 /* balanced_binary_tree.swift in Sources */,
 				79395667256AAD57000052C3 /* main.swift in Sources */,
 			);

@@ -27,7 +27,7 @@ import Foundation
 
 class Solution_back {
     
-    // MARK:- 括号
+    // MARK:- 面试题 08.09 括号
     func generateParenthesis(_ n: Int) -> [String] {
         var res = [String]()
         
@@ -50,7 +50,7 @@ class Solution_back {
         return res
     }
     
-    // MARK:- 八皇后
+    // MARK:- 面试题 08.12 八皇后
     struct Coord {
         var row: Int
         var column: Int
@@ -113,4 +113,100 @@ class Solution_back {
         }
     }
     
+    
+    // MARK:- 面试题 08.13 堆箱子
+    // 回溯+剪枝，大数据超时
+    var result = 0
+    func pileBox(_ box: [[Int]]) -> Int {
+        var box = box
+        box.sort { (el1, el2) -> Bool in
+            el1[2] < el2[2]
+        }
+        back(box: &box, begin: 0, bottom: [], height: 0)
+        return result
+    }
+    
+    func back(box: inout [[Int]], begin: Int, bottom: [Int], height: Int) {
+        for i in begin ..< box.count {
+            if bottom.count == 0 || box[i][0] > bottom[0] && box[i][1] > bottom[1] && box[i][2] > bottom[2] {
+                let bottom = box[i]
+                let newHeight = height + bottom[2]
+                result = result > newHeight ? result : newHeight
+                // 剪枝
+                back(box: &box, begin: i, bottom: bottom, height: newHeight)
+            }
+        }
+    }
+    
+    
+    // MARK:- 17.22 单词转换
+    /**
+     每次转换一个字母，转后后单词在字典内
+        
+     输入:
+     beginWord = "hit",
+     endWord = "cog",
+     wordList = ["hot","dot","dog","lot","log","cog"]
+
+     输出:
+     ["hit","hot","dot","lot","log","cog"]
+     */
+    var path = [String]()
+    func findLadders(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> [String] {
+        guard wordList.contains(endWord) else {
+            return []
+        }
+        var wordList = wordList
+        var endWord = endWord
+        var used = Array(repeating: false, count: wordList.count)
+        var path = [beginWord]
+        _ = back(wordList: &wordList, endWord: &endWord, path: &path, used: &used)
+        return self.path
+    }
+    
+    func back(wordList: inout [String], endWord: inout String, path: inout [String], used: inout Array<Bool>) -> Bool {
+        for i in 0 ..< wordList.count {
+            if used[i] {
+                continue
+            }
+            if String.oneCharDiff(a: wordList[i], b: path.last!) {
+                path.append(wordList[i])
+                if wordList[i] == endWord {
+                    self.path = path
+                    return true
+                }
+                used[i] = true
+                if back(wordList: &wordList, endWord: &endWord, path: &path, used: &used) {
+                    return true
+                }
+                // 如果运行到这一步，表示用该节点无法找到最终解，需剪枝
+                // used.remove(word)
+                path.removeLast()
+            }
+        }
+        return false
+    }
+    
+    
+}
+
+extension String {
+    /// 比较两个字符串是否相差一个字符， 相等也返回false
+    static func oneCharDiff(a: String, b: String) -> Bool {
+        if a.count != b.count {
+            return false
+        }
+        var offset = 0
+        for i in 0 ..< a.count {
+            let aIdx = a.index(a.startIndex, offsetBy: i)
+            let bIdx = b.index(b.startIndex, offsetBy: i)
+            if a[aIdx] != b[bIdx] {
+                offset += 1
+            }
+            if offset > 1 {
+                return false
+            }
+        }
+        return offset == 1
+    }
 }

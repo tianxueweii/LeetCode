@@ -127,6 +127,7 @@ class Solution_binary_tree {
             if !stack.isEmpty {
                 temp = stack.popLast()
                 
+                // 如果右子树存在且该子树不为最终节点，还需将节点入栈
                 if temp!.right == nil || temp!.right == last {
                     print(temp!.val)
                     last = temp

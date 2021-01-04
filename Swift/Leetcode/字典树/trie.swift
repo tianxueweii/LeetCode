@@ -8,6 +8,8 @@
 
 import Foundation
 
+// 面试题 17.13. 恢复空格
+
 class Solution_trie {
     /// 暴力穷举
     func respace_exhaustion(_ dictionary: [String], _ sentence: String) -> Int {
@@ -16,7 +18,7 @@ class Solution_trie {
         }
 
         let dict = Set(dictionary)
-        var dp = Array<Int>(repeating: 0, count: sentence.count + 1)
+        var dp = Array(repeating: 0, count: sentence.count + 1)
         
         for i in 1 ... sentence.count {
             dp[i] = dp[i - 1] + 1
@@ -33,54 +35,57 @@ class Solution_trie {
         return dp.last!
     }
     
+    // Trie
     func respace(_ dictionary: [String], _ sentence: String) -> Int {
-        guard sentence.count != 0 else {
+        guard sentence.count > 0 else {
             return 0
         }
-        var trie = Dictionary<Character, Any>()
-        createTrie(dictionary, trie: &trie)
-        var dp = Array<Int>(repeating: 0, count: sentence.count + 1)
         
-        for i in 1 ... sentence.count {
-            dp[i] = dp[i - 1] + 1
-            for j in 0 ..< i {
-                let startIdx = sentence.index(sentence.startIndex, offsetBy: j)
-                let endIdx = sentence.index(sentence.startIndex, offsetBy: i)
-                let substr = sentence[startIdx ..< endIdx]
-                
-                if searchTrie(trie: trie, word: String(substr)) {
-                    dp[i] = min(dp[i], dp[j])
-                }
-            }
+        let root = Trie()
+        for str in dictionary {
+            root.insert(str)
         }
         
+        var dp = Array(repeating: 0, count: sentence.count + 1)
+        for i in 1 ... sentence.count {
+            dp[i] = dp[i - 1] + 1
+            var trie = root
+            
+            let endIdx = sentence.index(sentence.startIndex, offsetBy: i)
+            let substr = String(sentence[sentence.startIndex ..< endIdx])
+            
+            for (j, c) in substr.reversed().enumerated() {
+                if trie.next[c] == nil {
+                    break
+                }
+                else if trie.next[c]!.isEnd {
+                    dp[i] = min(dp[i - j - 1], dp[i])
+                }
+                if dp[i] == 0 {
+                    break
+                }
+                trie = trie.next[c]!
+            }
+            
+        }
         return dp.last!
     }
     
-    func createTrie(_ dictionary: [String], trie: inout Dictionary<Character, Any>) {
-        for str in dictionary {
-            var p = trie
-            for c in str {
-                if p[c] == nil {
-                    p[c] = Dictionary<Character, Any>()
-                }
-                p = p[c] as! [Character : Any]
-            }
-        }
-    }
+}
+
+
+class Trie {
+    var next = Dictionary<Character, Trie>()
+    var isEnd = false
     
-    func searchTrie(trie: Dictionary<Character, Any>, word: String) -> Bool {
-        var p = trie
-        for c in word {
-            if p[c] != nil {
-                p = p[c] as! [Character : Any]
-            } else {
-                return false
+    func insert(_ s: String) {
+        var position = self
+        for c in s.reversed() {
+            if position.next[c] == nil {
+                position.next[c] = Trie()
             }
+            position = position.next[c]!
         }
-        if p.count != 0 {
-            return false
-        }
-        return true
+        position.isEnd = true
     }
 }

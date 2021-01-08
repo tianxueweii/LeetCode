@@ -27,6 +27,36 @@ func quickSort(_ arr: [Int]) -> [Int] {
     return quickSort(leftArr) + [ele] + quickSort(rightArr)
 }
 
+// MARK:- 归并排序
+func mergeSort(_ nums: [Int]) -> [Int] {
+    let length = nums.count
+    guard length > 1 else {
+        return nums
+    }
+    let center = length / 2;
+    return merge(mergeSort(Array(nums[0 ..< center])), mergeSort(Array(nums[center ..< length])))
+}
+
+func merge(_ left: [Int], _ right: [Int]) -> [Int] {
+    var result = [Int]()
+    var left = left
+    var right = right
+    while left.count != 0 && right.count != 0 {
+        if left[0] < right[0] {
+            result.append(left.removeFirst())
+        } else {
+            result.append(right.removeFirst())
+        }
+    }
+    while left.count != 0 {
+        result.append(left.removeFirst())
+    }
+    while right.count != 0 {
+        result.append(right.removeFirst())
+    }
+    return result
+}
+
 // MARK:- 堆排序
 func heapSort(_ nums: [Int]) -> [Int] {
     guard nums.count > 1 else {

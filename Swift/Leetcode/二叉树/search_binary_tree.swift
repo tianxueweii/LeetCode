@@ -14,6 +14,22 @@ import Foundation
 
 class Solution_search_binary_tree {
 
+    // MARK:- 二叉搜索树校验
+    func isValidBST(_ root: TreeNode?) -> Bool {
+        return trackBST(root, up: Int.max, low: Int.min)
+    }
+
+    func trackBST(_ root: TreeNode?, up: Int, low: Int) -> Bool {
+        guard let root = root else {
+            return true
+        }
+        if root.val >= up || root.val <= low {
+            return false
+        }
+
+        return trackBST(root.left, up: root.val, low: low) && trackBST(root.right, up: up, low: root.val)
+    }
+    
     // MARK:- 二叉搜索树转双链表
     var head: TreeNode?
     var cur: TreeNode?
@@ -128,6 +144,26 @@ class Solution_search_binary_tree {
             p == rootIdx
             && verifyPostorder_recur(postorder, idx: idx, rootIdx: rightTreeIdx - 1)
             && verifyPostorder_recur(postorder, idx: rightTreeIdx, rootIdx: rootIdx - 1)
+    }
+    
+    // MARK: - 有序数列构建二叉搜索树
+    // 面试题 04.02. 最小高度树
+    
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        var nums = nums
+        return create(nums: &nums, left: 0, right: nums.count - 1)
+    }
+
+    func create(nums: inout [Int], left: Int, right: Int) -> TreeNode? {
+        if left > right {
+            return nil
+        }
+
+        let center = (left + right) / 2
+        let root = TreeNode(nums[center])
+        root.left = create(nums: &nums, left: left, right: center - 1)
+        root.right = create(nums: &nums, left: center + 1, right: right)
+        return root
     }
 }
 

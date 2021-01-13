@@ -11,6 +11,8 @@
 import Foundation
 
 // 二叉搜索树，中序遍历为递增序列
+// 红黑树 = 平衡二叉搜索树
+// B树 = 平衡多路查找树
 
 class Solution_search_binary_tree {
 
@@ -63,31 +65,35 @@ class Solution_search_binary_tree {
     }
 
     // MARK:- 二叉搜索树第K大节点
-    enum KthLargestError: Error {
-        case Cross
-    }
-
-    var sequence: [Int] = []
-
-    func kthLargest(_ root: TreeNode?, _ k: Int) throws -> Int {
-        kthLargest_dfs(root)
-        if sequence.count < k {
-            throw KthLargestError.Cross
+    
+    // 二叉树中序遍历
+    func kthLargest(_ root: TreeNode?, _ k: Int) -> Int {
+        
+        var stack = [TreeNode]()
+        var node = root, k = k, result = 0
+        
+        while node != nil || !stack.isEmpty {
+            while node != nil {
+                stack.append(node!)
+                node = node?.right
+            }
+            
+            if !stack.isEmpty {
+                node = stack.removeLast()
+                result = node!.val
+                k -= 1
+                if k == 0 {
+                    return result
+                }
+                node = node!.left
+            }
         }
-        return sequence[sequence.count - k]
-    }
-
-    func kthLargest_dfs(_ root: TreeNode?) {
-        guard let root = root else {
-            return
-        }
-
-        kthLargest_dfs(root.left)
-        sequence.append(root.val)
-        kthLargest_dfs(root.right)
+        
+        return result
     }
     
     // MARK:- 二叉搜索树的最近公共祖先
+    // tips. 比较非二叉搜索树最近公共祖先问题
     func lowestCommonAncestor(_ root: TreeNode?, p: TreeNode, q: TreeNode) -> TreeNode? {
         guard let node = root else {
             return root
@@ -119,6 +125,11 @@ class Solution_search_binary_tree {
     }
     
     // MARK:- 二叉搜索树后序遍历序列
+    
+    // 剑指 Offer 33. 二叉搜索树的后序遍历序列
+    // 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。
+    // 如果是则返回 true，否则返回 false。
+    // 假设输入的数组的任意两个数字都互不相同。
     
     func verifyPostorder(_ postorder: [Int]) -> Bool {
         return verifyPostorder_recur(postorder, idx: 0, rootIdx: postorder.count - 1)

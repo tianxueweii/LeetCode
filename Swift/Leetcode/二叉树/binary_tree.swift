@@ -290,5 +290,22 @@ class Solution_binary_tree {
         
         _ = path.popLast()
     }
+    
+    // MARK:- 二叉树最大路径和
+    // 124. 二叉树中的最大路径和 ⭐️
+    var res = Int.min
+    func maxPathSum(_ root: TreeNode?) -> Int {
+        _ = dfs(root)
+        return res
+    }
+    func dfs(_ root: TreeNode?) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        let left = dfs(root.left)
+        let right = dfs(root.right)
+        res = max(res, left + right + root.val)
+        return max(0, max(left, right) + root.val)
+    }
 }
 

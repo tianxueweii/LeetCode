@@ -165,6 +165,20 @@ class Solution_search_binary_tree {
         root.right = create(nums: &nums, left: center + 1, right: right)
         return root
     }
+    
+    // MARK: -  二叉搜索树插入
+    // 701. 二叉搜索树中的插入操作
+    func insertIntoBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
+        guard root != nil else {
+            return TreeNode(val)
+        }
+        if val < root!.val {
+            root!.left = insertIntoBST(root!.left, val)
+        } else {
+            root!.right = insertIntoBST(root!.right, val)
+        }
+        return root
+    }
 }
 
 

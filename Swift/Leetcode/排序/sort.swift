@@ -108,5 +108,27 @@ func minHeapAdjust(_ arr: inout [Int], _ root: Int, _ length: Int) {
     }
 }
 
+// MARK:- 荷兰国旗排序
+// 75. 颜色分类
+func sortColors(_ nums: inout [Int]) {
+    // p0指向0的待排序位，p1指向1的待排序位
+    var p0 = 0, p1 = 0
+    for i in 0 ..< nums.count {
+        if nums[i] == 1 {
+            nums.swapAt(i, p1)
+            p1 += 1
+        }
+        if nums[i] == 0 {
+            nums.swapAt(i, p0)
+            // p0 < p1 说明将已经排好的1移至了i侧，需要重排1
+            if p0 < p1 {
+                nums.swapAt(i, p1)
+            }
+            p0 += 1
+            p1 += 1
+        }
+    }
+}
+
 
 

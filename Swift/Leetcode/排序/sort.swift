@@ -27,6 +27,29 @@ func quickSort(_ arr: [Int]) -> [Int] {
     return quickSort(leftArr) + [ele] + quickSort(rightArr)
 }
 
+func quickSort2(_ nums: [Int]) -> [Int] {
+    var nums = nums
+    partition(&nums, 0, nums.count - 1)
+    return nums
+}
+
+func partition(_ nums: inout [Int], _ l: Int, _ r: Int) {
+    guard l < r else {
+        return
+    }
+    var center = l
+    for i in l ..< r {
+        if nums[i] < nums[r] {
+            nums.swapAt(i, center)
+            center += 1
+        }
+    }
+    nums.swapAt(center, r)
+
+    partition(&nums, l, center - 1)
+    partition(&nums, center + 1, r)
+}
+
 // MARK:- 归并排序
 func mergeSort(_ nums: [Int]) -> [Int] {
     let length = nums.count
@@ -48,11 +71,11 @@ func merge(_ left: [Int], _ right: [Int]) -> [Int] {
             result.append(right.removeFirst())
         }
     }
-    while left.count != 0 {
-        result.append(left.removeFirst())
+    if !left.isEmpty {
+        result.append(contentsOf: left)
     }
-    while right.count != 0 {
-        result.append(right.removeFirst())
+    if !right.isEmpty {
+        result.append(contentsOf: right)
     }
     return result
 }

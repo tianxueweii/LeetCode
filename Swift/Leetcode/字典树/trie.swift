@@ -9,7 +9,7 @@
 import Foundation
 
 // 面试题 17.13. 恢复空格
-
+// 139. 单词拆分 (此题也可用set穷尽)
 class Solution_trie {
     /// 暴力穷举
     func respace_exhaustion(_ dictionary: [String], _ sentence: String) -> Int {

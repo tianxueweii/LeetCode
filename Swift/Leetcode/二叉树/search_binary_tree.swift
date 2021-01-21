@@ -177,7 +177,7 @@ class Solution_search_binary_tree {
         return root
     }
     
-    // MARK: -  二叉搜索树插入
+    // MARK:- 二叉搜索树插入
     // 701. 二叉搜索树中的插入操作
     func insertIntoBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
         guard root != nil else {
@@ -187,6 +187,34 @@ class Solution_search_binary_tree {
             root!.left = insertIntoBST(root!.left, val)
         } else {
             root!.right = insertIntoBST(root!.right, val)
+        }
+        return root
+    }
+    
+    // MARK:- 二叉搜索树删除
+    // 450. 删除二叉搜索树中的节点
+    func deleteNode(_ root: TreeNode?, _ key: Int) -> TreeNode? {
+        guard root != nil else {
+            return root
+        }
+
+        if root!.val > key {
+            root!.left = deleteNode(root?.left, key)
+        } else if root!.val < key {
+            root!.right = deleteNode(root?.right, key)
+        } else {
+            if root?.left == nil {
+                return root?.right
+            }
+            if root?.right == nil {
+                return root?.left
+            }
+            var tmp = root?.right
+            while tmp?.left != nil {
+                tmp = tmp?.left
+            }
+            tmp?.left = root?.left
+            return root?.right
         }
         return root
     }
